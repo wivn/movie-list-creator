@@ -69,8 +69,3 @@
   height: 1px;
   overflow: hidden;
 }
-/* TODO: Move this to nominations CSS*/
-.nominations {
-  flex-basis: 50%;
-  flex-grow: 0;
-}

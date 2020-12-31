@@ -1,17 +1,14 @@
 import React from "react";
 import logo from "./logo.svg";
 import Results from "./Results.jsx";
-import Stars from "./Stars.jsx";
 import Banner from "./Banner.jsx";
+import SearchBar from "./SearchBar.jsx";
+import Nominations from "./Nominations.jsx";
 import "./App.css";
 
 // TODO: Ensure that setNominees is only accessed through the update nominees function
 
-// TODO: Run Prettier on all code
-
 // TODO: Run grep searching for all todos
-
-// TODO: Seperate out nominees and searchbar from App.js
 
 // TODO: Create a logo
 
@@ -148,22 +145,7 @@ function App({ history }) {
       </header>
       <main className="app">
         <Banner numOfNominees={nominees.length} />
-        <section className="searchbar">
-          <label for="search" className="searchbar__label">
-            Movie title:{" "}
-          </label>
-          <input
-            id="search"
-            className="searchbar__input"
-            onChange={(event) => {
-              setText(event.target.value);
-              getMovies(event.target.value);
-            }}
-            placeholder={"Movie name goes here..."}
-            value={text}
-            type="text"
-          />
-        </section>
+        <SearchBar setText={setText} getMovies={getMovies} text={text} />
 
         <section class="app__main">
           <Results
@@ -173,32 +155,12 @@ function App({ history }) {
             updateNominees={updateNominees}
           />
 
-          <section class="nominations">
-            <h2>Nominations</h2>
-            {nominees.length == 0
-              ? "Hey if you look up movies you can add them to your nominees list!"
-              : null}
-            <ul className="list">
-              {nominees.map((data) => (
-                <li className="list__item" key={"nominee-" + data.imdbID}>
-                  {data.Title} ({data.Year})
-                  <button
-                    className="list__item__btn"
-                    onClick={() => removeFromNominees(data.imdbID)}
-                  >
-                    Remove
-                  </button>
-                  <Stars
-                    updateRanking={(ranking) =>
-                      setStarRankingsBasedOnID(data.imdbID, ranking)
-                    }
-                    ranking={getStarRankingBasedOnID(data.imdbID)}
-                    id={data.imdbID}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
+          <Nominations
+            nominees={nominees}
+            removeFromNominees={removeFromNominees}
+            setStarRankingsBasedOnID={setStarRankingsBasedOnID}
+            getStarRankingBasedOnID={getStarRankingBasedOnID}
+          />
         </section>
         <div>
           Icons made by{" "}
