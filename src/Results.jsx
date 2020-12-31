@@ -1,3 +1,6 @@
+import React from 'react';
+import "./Results.css";
+
 function Results({text, items, nominees, updateNominees}) {
   function movieInNominees(imdbID){
     for(var movie of nominees){
@@ -7,27 +10,37 @@ function Results({text, items, nominees, updateNominees}) {
     }
     return false
   }
-  if(text != ""){
+  
     return (
-      <section>
-        <h2>Results for "{text}"</h2>
-        {
-          items.Error && text != ""? <div>{items.Error}</div>: null
-        }
-      
-        
-        <ul>
-          { 
-           items.Search ? items.Search.map((data) => 
-            <li key={"result-"+data.imdbID}>
-              {data.Title} ({data.Year}) <button disabled={movieInNominees(data.imdbID)} onClick={() => updateNominees([...nominees, data])}>{movieInNominees(data.imdbID) ? 'Nominated' : 'Nominate'}</button>
-            </li>) : null
+      <section className="results">
+        <h2 class="results__title">Results for "{text}"</h2>
+          { text != "" ? 
+                  <React.Fragment>
+                  {
+                     items.Error && text != ""? <div class="results__errortext">{items.Error}</div>: null
+                    }
+                  
+                    
+                    <ul className="list">
+                      { 
+                       items.Search ? items.Search.map((data) => 
+                        <li className="list__item" key={"result-"+data.imdbID}>
+                          {data.Title} ({data.Year}) 
+                          <button 
+                            className="list__item__btn"
+                            disabled={movieInNominees(data.imdbID)} 
+                            onClick={() => updateNominees([...nominees, data])}>
+                              {
+                                movieInNominees(data.imdbID) ? 'Nominated' : 'Nominate'
+                              }
+                          </button>
+                        </li>) : null
+                      }
+                  </ul>
+                  </React.Fragment>: null
           }
-        </ul>
       </section>
-    )} else {
-      return null;
-    }
+    )
 
   
 }

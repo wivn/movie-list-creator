@@ -1,0 +1,14 @@
+.results {
+	flex-basis: 50%;
+flex-grow: 0;
+}
+.results__title {
+		margin-left: 0.4em;
+
+	font-size: 1.8em;
+}
+.results__errortext {
+	font-size: 1.2em;
+	margin-left: 1em;
+}
+

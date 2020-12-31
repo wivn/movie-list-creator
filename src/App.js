@@ -2,12 +2,22 @@ import React from 'react';
 import logo from './logo.svg';
 import Results from "./Results.jsx";
 import Stars from "./Stars.jsx";
-
+import "./App.css";
 // ooooo I could make shareable links using the IDs and the URLs, that might be cool (DONE)
 
 // Give your nominees a ranking?  out of stars (which would be neat) and ensure it's saved to the URL (DONE)
 
 // TODO: Ensure that setNominees is only accessed through the update nominees function
+
+// TODO: Ensure there is a banner when you have 5 nominations
+
+// TODO: Run Prettier on all code
+
+// TODO: Run grep searching for all todos
+
+// TODO: Ensure on mobile, the two main columns collapse to rows
+
+// TODO: Ensure exceeds specification
 
 function App({history}) {
   const [error, setError] = React.useState(null);
@@ -17,10 +27,7 @@ function App({history}) {
   const [nominees, setNominees] = React.useState([]);
   const [starRankings, setStarRankings] = React.useState([]);
   
-  function onSubmit(event){
-    event.preventDefault()
-    setText("")
-  }
+  
   React.useEffect(()=> {
     console.log("PATHNAME", history.location.pathname)
     if(history.location.pathname != "/"){
@@ -139,42 +146,45 @@ function App({history}) {
   }
   return (
     <div>
-      <header>
-        Movie List Creator
+      <header className="head">
+        <h1 className="title">Movie List Creator</h1>
       </header>
-      <section>
-      <form onSubmit={(event) => onSubmit(event)}>
-        <label>Movie: 
-          <input 
-            onChange={(event) => {
-              setText(event.target.value)
-              getMovies(event.target.value)
+      <main className="app">
+        <section className="searchbar">
+          <label for="search" className="searchbar__label">Movie title: </label>
+            <input 
+              id="search"
+              className="searchbar__input"
+              onChange={(event) => {
+                setText(event.target.value)
+                getMovies(event.target.value)
+              }
+              } 
+              placeholder={"Movie name goes here..."}
+              value={text} 
+              type="text"/>
+          
+        </section>
+        
+        <section class="app__main">
+          <Results text={text} nominees={nominees} items={items} updateNominees={updateNominees}/>
+          
+          <section class="nominations">
+            <h2>Nominations</h2>
+            {nominees.length == 0 ? "Hey if you look up movies you can add them to your nominees list!" :null}
+            <ul className="list">
+            {
+              nominees.map((data) => <li className="list__item" key={"nominee-"+data.imdbID}>
+                  {data.Title} ({data.Year})
+                  <button className="list__item__btn" onClick={() => removeFromNominees(data.imdbID)}>Remove</button>
+                  <Stars updateRanking={(ranking) => setStarRankingsBasedOnID(data.imdbID, ranking)} ranking={getStarRankingBasedOnID(data.imdbID)} id={data.imdbID}/>
+                </li>)
             }
-            } 
-            value={text} 
-            type="text"/>
-        </label>
-        <input  value="Submit" type="submit"/>
-      </form>
-      </section>
-      <section>
-        <Results text={text} nominees={nominees} items={items} updateNominees={updateNominees}/>
-      </section>
-      <section>
-        <h2>Nominations</h2>
-        {nominees.length == 0 ? "Hey if you look up movies you can add them to your nominees list!" :null}
-        <ul>
-        {
-          nominees.map((data) => <li key={"nominee-"+data.imdbID}>
-              {data.Title} ({data.Year})
-              <button onClick={() => removeFromNominees(data.imdbID)}>Remove</button>
-              <Stars updateRanking={(ranking) => setStarRankingsBasedOnID(data.imdbID, ranking)} ranking={getStarRankingBasedOnID(data.imdbID)} id={data.imdbID}/>
-            </li>)
-        }
-        </ul>
-      </section>
-<div>Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
+            </ul>
+          </section>
+        </section>
+  <div>Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+  </main>
     </div>
   );
 }
