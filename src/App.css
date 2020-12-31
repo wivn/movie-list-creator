@@ -55,6 +55,13 @@
   padding: 0.5em;
   margin-left: 0.2em;
 }
+/*Media Queries*/
+
+@media only screen and (max-width: 800px) {
+  .app__main {
+    flex-direction: column;
+  }
+}
 
 /* 	
 	Used for text that should only be visible to screenreaders

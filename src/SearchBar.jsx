@@ -1,7 +1,7 @@
 function SearchBar({ setText, getMovies, text }) {
   return (
     <section className="searchbar">
-      <label for="search" className="searchbar__label">
+      <label htmlFor="search" className="searchbar__label">
         Movie title:{" "}
       </label>
       <input

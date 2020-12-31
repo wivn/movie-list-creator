@@ -6,15 +6,13 @@ import SearchBar from "./SearchBar.jsx";
 import Nominations from "./Nominations.jsx";
 import "./App.css";
 
-// TODO: Ensure that setNominees is only accessed through the update nominees function
+// TODO: Create a logo
+
+// TODO: Ensure exceeds specification
 
 // TODO: Run grep searching for all todos
 
-// TODO: Create a logo
-
-// TODO: Ensure on mobile, the two main columns collapse to rows
-
-// TODO: Ensure exceeds specification
+// TODO: Check how it looks on mobile
 
 function App({ history }) {
   const [error, setError] = React.useState(null);
@@ -25,7 +23,6 @@ function App({ history }) {
   const [starRankings, setStarRankings] = React.useState([]);
 
   React.useEffect(() => {
-    console.log("PATHNAME", history.location.pathname);
     if (history.location.pathname != "/") {
       var movieIDsWithRanking = history.location.pathname
         .split("/id=")[1]
@@ -53,14 +50,12 @@ function App({ history }) {
   }, []); // TODO: Fix depednecy, maybe I should use, useCallback on updateNominees?
 
   const getMovies = (text) => {
-    console.log("Text is:", text);
     fetch(`http://www.omdbapi.com/?apikey=53f20b78&s=${text}&page=1&type=movie`)
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setItems(result);
-          console.log("The result is", result, isLoaded);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -71,12 +66,6 @@ function App({ history }) {
         }
       );
   };
-  React.useEffect(() => {
-    if (nominees.length >= 5) {
-      // TODO: Make this an actual banner that appears at the top of the site
-      console.log("You have filled up all your nominee spots! Congrats!");
-    }
-  }, [nominees]);
 
   React.useEffect(() => {
     // when nominees or star rankings changes, update the URL
@@ -96,9 +85,7 @@ function App({ history }) {
     }
   }, [nominees, starRankings]);
   function setStarRankingsBasedOnID(imdbID, ranking) {
-    console.log(imdbID);
     var newRankings = starRankings.filter((movie) => movie.imdbID != imdbID);
-    console.log(newRankings);
     newRankings.push({ imdbID, ranking });
     setStarRankings(newRankings);
   }
@@ -147,7 +134,7 @@ function App({ history }) {
         <Banner numOfNominees={nominees.length} />
         <SearchBar setText={setText} getMovies={getMovies} text={text} />
 
-        <section class="app__main">
+        <section className="app__main">
           <Results
             text={text}
             nominees={nominees}

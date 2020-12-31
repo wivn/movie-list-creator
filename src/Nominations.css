@@ -2,3 +2,8 @@
   flex-basis: 50%;
   flex-grow: 0;
 }
+.nominations__title {
+  margin-left: 0.4em;
+
+  font-size: 1.8em;
+}

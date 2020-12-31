@@ -13,11 +13,11 @@ function Results({ text, items, nominees, updateNominees }) {
 
   return (
     <section className="results">
-      <h2 class="results__title">Results for "{text}"</h2>
+      <h2 className="results__title">Results for "{text}"</h2>
       {text != "" ? (
         <React.Fragment>
           {items.Error && text != "" ? (
-            <div class="results__errortext">{items.Error}</div>
+            <div className="results__errortext">{items.Error}</div>
           ) : null}
 
           <ul className="list">

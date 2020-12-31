@@ -8,8 +8,8 @@ function Nominations({
   getStarRankingBasedOnID,
 }) {
   return (
-    <section class="nominations">
-      <h2>Nominations</h2>
+    <section className="nominations">
+      <h2 className="nominations__title">Nominations</h2>
       {nominees.length == 0
         ? "Hey if you look up movies you can add them to your nominees list!"
         : null}
