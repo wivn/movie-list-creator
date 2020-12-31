@@ -12,8 +12,6 @@ import "./App.css";
 
 // TODO: Run grep searching for all todos
 
-// TODO: Check how it looks on mobile
-
 function App({ history }) {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);

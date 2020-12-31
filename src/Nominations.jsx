@@ -11,7 +11,7 @@ function Nominations({
     <section className="nominations">
       <h2 className="nominations__title">Nominations</h2>
       {nominees.length == 0
-        ? "Hey if you look up movies you can add them to your nominees list!"
+        ? <span className="nominations__default">Hey if you look up movies you can add them to your nominees list!</span>
         : null}
       <ul className="list">
         {nominees.map((data) => (
