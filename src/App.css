@@ -1,62 +1,59 @@
 .head {
-	padding: 1em 1em 0 1em;
+  padding: 1em 1em 0 1em;
 }
 
 .title {
-	margin: 0;
+  margin: 0;
 }
 
 .app {
-	margin: 0em 2em 0 2em;
-	padding: 1em;
+  margin: 0em 2em 0 2em;
+  padding: 1em;
 }
 .app__main {
-	display: flex;
-	margin: 1em;
-	 background-color: #B7ECEC;
-	 border-radius: 0.5em;
+  display: flex;
+  margin: 1em;
+  background-color: #b7ecec;
+  border-radius: 0.5em;
 }
 
 .searchbar {
-
-	display: flex;
-	flex-direction: column;
-	background-color: white;
-	border-radius: 0.5em;
-	padding: 1em;
-	  box-shadow: 0em 0.1em 0.2em #47C1BF;
-	 background-color: #B7ECEC;
-	 color: #405352;
-
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.5em;
+  padding: 1em;
+  box-shadow: 0em 0.1em 0.2em #47c1bf;
+  background-color: #b7ecec;
+  color: #405352;
 }
 .searchbar__input {
-
-	width: 100%;
-	padding: 1em;
-	border-radius: 0.2em;
-	border: none;
-	outline: none;
-	font-size: 1em;
-	border: 0.2em solid #00848E;
+  width: 100%;
+  padding: 1em;
+  border-radius: 0.2em;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  border: 0.2em solid #00848e;
 }
 
 .searchbar__input:focus {
-	box-shadow: 0em 0.1em 0.2em #003135;
+  box-shadow: 0em 0.1em 0.2em #003135;
 }
 
 .searchbar__label {
-	font-size: 1.3em;
-	margin-bottom: 0.5em;
-	color: black;
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  color: black;
 }
 
 .list__item {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .list__item__btn {
-	padding: 0.5em;
-	margin-left: 0.2em;
+  padding: 0.5em;
+  margin-left: 0.2em;
 }
 
 /* 	
@@ -65,16 +62,15 @@
 */
 
 .sr-only {
-position:absolute;
-left:-10000px;
-top:auto;
-width:1px;
-height:1px;
-overflow:hidden;
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 /* TODO: Move this to nominations CSS*/
 .nominations {
-	flex-basis: 50%;
-flex-grow: 0;
+  flex-basis: 50%;
+  flex-grow: 0;
 }
-

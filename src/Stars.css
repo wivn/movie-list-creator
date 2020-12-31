@@ -1,8 +1,8 @@
 .stars {
-	display: inline-block;
+  display: inline-block;
 }
 .stars__svg {
-	vertical-align: top;
-	height: 1em;
-	width: 1.5em;
+  vertical-align: top;
+  height: 1em;
+  width: 1.5em;
 }
