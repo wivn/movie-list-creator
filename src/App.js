@@ -2,18 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import Results from "./Results.jsx";
 import Stars from "./Stars.jsx";
+import Banner from './Banner.jsx';
 import "./App.css";
-// ooooo I could make shareable links using the IDs and the URLs, that might be cool (DONE)
-
-// Give your nominees a ranking?  out of stars (which would be neat) and ensure it's saved to the URL (DONE)
 
 // TODO: Ensure that setNominees is only accessed through the update nominees function
-
-// TODO: Ensure there is a banner when you have 5 nominations
 
 // TODO: Run Prettier on all code
 
 // TODO: Run grep searching for all todos
+
+// TODO: Seperate out nominees and searchbar from App.js
 
 // TODO: Ensure on mobile, the two main columns collapse to rows
 
@@ -150,6 +148,7 @@ function App({history}) {
         <h1 className="title">Movie List Creator</h1>
       </header>
       <main className="app">
+        <Banner numOfNominees={nominees.length}/>
         <section className="searchbar">
           <label for="search" className="searchbar__label">Movie title: </label>
             <input 
