@@ -44,10 +44,13 @@ function App({ history }) {
         .then((values) => Promise.all(values.map((resp) => resp.json())))
         .then((results) => {
           updateNominees(results, newRankings);
+        },
+        (error) => {
+          console.log("error", error)
+          setIsLoaded(true);
+          setError(error);
         });
     }
-
-    // TODO: Add error handling for the URL ids (just make it add an error banner if it's wrong) [look at how get movies handles errors]
   }, []); // TODO: Fix depednecy, maybe I should use, useCallback on updateNominees?
 
   const getMovies = (text) => {
@@ -129,7 +132,7 @@ function App({ history }) {
         <h1 className="title">Movie List Creator</h1>
       </header>
       <main className="app">
-        <Banner numOfNominees={nominees.length} />
+        <Banner isLoaded={isLoaded} error={error} numOfNominees={nominees.length} />
         <SearchBar setText={setText} getMovies={getMovies} text={text} />
 
         <section className="app__main">
