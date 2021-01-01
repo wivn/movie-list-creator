@@ -129,6 +129,11 @@ function App({ history }) {
 
     setNominees(nominees);
   }
+  function getMoviesBasedOnID(ids) {
+    return Promise.all(
+      ids.map((id) => fetch(`http://www.omdbapi.com/?apikey=53f20b78&i=${id}`))
+    );
+  }
   return (
     <div>
       <header className="head">
@@ -169,12 +174,6 @@ function App({ history }) {
         </div>
       </main>
     </div>
-  );
-}
-
-function getMoviesBasedOnID(ids) {
-  return Promise.all(
-    ids.map((id) => fetch(`http://www.omdbapi.com/?apikey=53f20b78&i=${id}`))
   );
 }
 
