@@ -5,13 +5,6 @@ import SearchBar from "./SearchBar.jsx";
 import Nominations from "./Nominations.jsx";
 import "./App.css";
 
-
-// TODO: Ensure exceeds specification
-
-// TODO: Run grep searching for all todos
-
-// TODO: Run the prettier formatting tool one last time
-
 // TODO: Create README.md with screenshots
 
 function App({ history }) {
@@ -41,14 +34,16 @@ function App({ history }) {
 
       getMoviesBasedOnID(onlyMovieIDs)
         .then((values) => Promise.all(values.map((resp) => resp.json())))
-        .then((results) => {
-          updateNominees(results, newRankings);
-        },
-        (error) => {
-          console.log("error", error)
-          setIsLoaded(true);
-          setError(error);
-        });
+        .then(
+          (results) => {
+            updateNominees(results, newRankings);
+          },
+          (error) => {
+            console.log("error", error);
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
     }
     /* ESLint complains about the empty dependency array below. 
     This piece of code MUST only run once, or else the app gets stuck in an infinite loop.
@@ -71,16 +66,19 @@ function App({ history }) {
         }
       );
   };
-  const getStarRankingBasedOnID = React.useCallback((imdbID) => {
-    const data = starRankings.filter(
-      (movieRanking) => movieRanking.imdbID === imdbID
-    );
-    if (data.length !== 0) {
-      return data[0].ranking;
-    } else {
-      return 0;
-    }
-  }, [starRankings])
+  const getStarRankingBasedOnID = React.useCallback(
+    (imdbID) => {
+      const data = starRankings.filter(
+        (movieRanking) => movieRanking.imdbID === imdbID
+      );
+      if (data.length !== 0) {
+        return data[0].ranking;
+      } else {
+        return 0;
+      }
+    },
+    [starRankings]
+  );
 
   React.useEffect(() => {
     // when nominees or star rankings changes, update the URL
@@ -104,7 +102,7 @@ function App({ history }) {
     newRankings.push({ imdbID, ranking });
     setStarRankings(newRankings);
   }
-  
+
   function removeFromNominees(imdbID) {
     // Ensure URL gets cleared as well
     if (nominees.length === 1) {
@@ -137,7 +135,11 @@ function App({ history }) {
         <h1 className="title">Movie List Creator</h1>
       </header>
       <main className="app">
-        <Banner isLoaded={isLoaded} error={error} numOfNominees={nominees.length} />
+        <Banner
+          isLoaded={isLoaded}
+          error={error}
+          numOfNominees={nominees.length}
+        />
         <SearchBar setText={setText} getMovies={getMovies} text={text} />
 
         <section className="app__main">
