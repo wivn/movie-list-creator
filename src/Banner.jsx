@@ -7,7 +7,7 @@ function Banner({ numOfNominees, isLoaded, error }) {
   } else if (numOfNominees >= 5) {
     return (
       <div className="banner">
-        Congrats! You have selected 5 or more nominees!
+        Congrats! You have selected 5 or more nominees! Share the current URL so you can let others see who you've nominated!
       </div>
     );
   } else {
