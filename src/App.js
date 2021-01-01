@@ -6,11 +6,14 @@ import SearchBar from "./SearchBar.jsx";
 import Nominations from "./Nominations.jsx";
 import "./App.css";
 
-// TODO: Create a logo
 
 // TODO: Ensure exceeds specification
 
 // TODO: Run grep searching for all todos
+
+// TODO: Run the prettier formatting tool one last time
+
+// TODO: Create README.md with screenshots
 
 function App({ history }) {
   const [error, setError] = React.useState(null);
@@ -44,7 +47,7 @@ function App({ history }) {
         });
     }
 
-    // TODO: Add error handling for the URL ids (just make it add an error banner if it's wrong)
+    // TODO: Add error handling for the URL ids (just make it add an error banner if it's wrong) [look at how get movies handles errors]
   }, []); // TODO: Fix depednecy, maybe I should use, useCallback on updateNominees?
 
   const getMovies = (text) => {
@@ -55,9 +58,6 @@ function App({ history }) {
           setIsLoaded(true);
           setItems(result);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
