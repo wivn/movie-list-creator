@@ -35,7 +35,7 @@ function Stars({ id, ranking, updateRanking }) {
           </label>
           <input
             className="sr-only"
-            checked={ranking == num}
+            checked={ranking === num}
             onChange={onSelectionChange}
             id={"stars-" + id + "-num-" + num}
             name={"star-rating-id-" + id}

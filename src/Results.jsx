@@ -4,7 +4,7 @@ import "./Results.css";
 function Results({ text, items, nominees, updateNominees }) {
   function movieInNominees(imdbID) {
     for (var movie of nominees) {
-      if (movie.imdbID == imdbID) {
+      if (movie.imdbID === imdbID) {
         return true;
       }
     }
@@ -14,9 +14,9 @@ function Results({ text, items, nominees, updateNominees }) {
   return (
     <section className="results">
       <h2 className="results__title">Results for "{text}"</h2>
-      {text != "" ? (
+      {text !== "" ? (
         <React.Fragment>
-          {items.Error && text != "" ? (
+          {items.Error && text !== "" ? (
             <div className="results__errortext">{items.Error}</div>
           ) : null}
 

@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import Results from "./Results.jsx";
 import Banner from "./Banner.jsx";
 import SearchBar from "./SearchBar.jsx";
@@ -24,7 +23,7 @@ function App({ history }) {
   const [starRankings, setStarRankings] = React.useState([]);
 
   React.useEffect(() => {
-    if (history.location.pathname != "/") {
+    if (history.location.pathname !== "/") {
       var movieIDsWithRanking = history.location.pathname
         .split("/id=")[1]
         .split(",");
@@ -51,7 +50,12 @@ function App({ history }) {
           setError(error);
         });
     }
-  }, []); // TODO: Fix depednecy, maybe I should use, useCallback on updateNominees?
+    /* ESLint complains about the empty dependency array below. 
+    This piece of code MUST only run once, or else the app gets stuck in an infinite loop.
+    So the dependency array MUST be empty.
+    */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getMovies = (text) => {
     fetch(`http://www.omdbapi.com/?apikey=53f20b78&s=${text}&page=1&type=movie`)
@@ -67,13 +71,23 @@ function App({ history }) {
         }
       );
   };
+  const getStarRankingBasedOnID = React.useCallback((imdbID) => {
+    const data = starRankings.filter(
+      (movieRanking) => movieRanking.imdbID === imdbID
+    );
+    if (data.length !== 0) {
+      return data[0].ranking;
+    } else {
+      return 0;
+    }
+  }, [starRankings])
 
   React.useEffect(() => {
     // when nominees or star rankings changes, update the URL
     var idSuffix = nominees
       .map((movie, index) => {
         var joiner = ",";
-        if (index == nominees.length - 1) {
+        if (index === nominees.length - 1) {
           joiner = "";
         }
         return (
@@ -81,31 +95,22 @@ function App({ history }) {
         );
       })
       .join("");
-    if (idSuffix != "") {
+    if (idSuffix !== "") {
       history.replace("/id=" + idSuffix);
     }
-  }, [nominees, starRankings]);
+  }, [nominees, starRankings, getStarRankingBasedOnID, history]);
   function setStarRankingsBasedOnID(imdbID, ranking) {
-    var newRankings = starRankings.filter((movie) => movie.imdbID != imdbID);
+    var newRankings = starRankings.filter((movie) => movie.imdbID !== imdbID);
     newRankings.push({ imdbID, ranking });
     setStarRankings(newRankings);
   }
-  function getStarRankingBasedOnID(imdbID) {
-    const data = starRankings.filter(
-      (movieRanking) => movieRanking.imdbID == imdbID
-    );
-    if (data.length != 0) {
-      return data[0].ranking;
-    } else {
-      return 0;
-    }
-  }
+  
   function removeFromNominees(imdbID) {
     // Ensure URL gets cleared as well
-    if (nominees.length == 1) {
+    if (nominees.length === 1) {
       history.replace("/");
     }
-    updateNominees(nominees.filter((movie) => movie.imdbID != imdbID));
+    updateNominees(nominees.filter((movie) => movie.imdbID !== imdbID));
   }
   function updateNominees(nominees, mostUpToDateStarRankings = null) {
     if (mostUpToDateStarRankings) {
@@ -113,11 +118,11 @@ function App({ history }) {
     } else {
       // remove unneeded rankings
       var newRankings = starRankings.filter((movie) =>
-        nominees.some((ranking) => movie.imdbID == ranking.imdbID)
+        nominees.some((ranking) => movie.imdbID === ranking.imdbID)
       );
       // add missing ranking
-      for (var movie of nominees) {
-        if (!starRankings.some((ranking) => ranking.imdbID == movie.imdbID)) {
+      for (let movie of nominees) {
+        if (!starRankings.some((ranking) => ranking.imdbID === movie.imdbID)) {
           newRankings.push({ imdbID: movie.imdbID, ranking: 0 });
         }
       }

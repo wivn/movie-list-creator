@@ -10,7 +10,7 @@ function Nominations({
   return (
     <section className="nominations">
       <h2 className="nominations__title">Nominations</h2>
-      {nominees.length == 0
+      {nominees.length === 0
         ? <span className="nominations__default">Hey if you look up movies you can add them to your nominees list!</span>
         : null}
       <ul className="list">
