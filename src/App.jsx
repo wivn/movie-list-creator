@@ -5,8 +5,6 @@ import SearchBar from "./SearchBar.jsx";
 import Nominations from "./Nominations.jsx";
 import "./App.css";
 
-// TODO: Create README.md with screenshots
-
 function App({ history }) {
   const [error, setError] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -53,7 +51,7 @@ function App({ history }) {
   }, []);
 
   const getMovies = (text) => {
-    fetch(`http://www.omdbapi.com/?apikey=53f20b78&s=${text}&page=1&type=movie`)
+    fetch(`https://www.omdbapi.com/?apikey=53f20b78&s=${text}&page=1&type=movie`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -131,7 +129,7 @@ function App({ history }) {
   }
   function getMoviesBasedOnID(ids) {
     return Promise.all(
-      ids.map((id) => fetch(`http://www.omdbapi.com/?apikey=53f20b78&i=${id}`))
+      ids.map((id) => fetch(`https://www.omdbapi.com/?apikey=53f20b78&i=${id}`))
     );
   }
   return (
