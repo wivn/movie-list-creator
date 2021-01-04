@@ -135,7 +135,7 @@ function App({ history }) {
   return (
     <div>
       <header className="head">
-        <h1 className="title">Movie List Creator</h1>
+        <h1 className="title">The Shoppies</h1>
       </header>
       <main className="app">
         <Banner
