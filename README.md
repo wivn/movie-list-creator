@@ -10,7 +10,7 @@ I needed to create a simple way for people to nominate five of their favourite m
 - Remove movies from your nominees list
 - Give "star ratings" to each of your nominees
 - Has a shareable URL so you can show everyone your top 5 favourite movies and their star ratings
-- As long as you bookmark the URL are you've made changes to the "star ratings" or nominees, then you'll have it saved to be able to work on it later
+- Bookmarking the URL after you've changed the nominees or "star ratings" works as an easy saving mechanism
 
 ## How
 
