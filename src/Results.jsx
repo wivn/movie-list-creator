@@ -27,7 +27,7 @@ function Results({ text, items, nominees, updateNominees }) {
                     {data.Title} ({data.Year})
                     <button
                       className="list__item__btn"
-                      disabled={movieInNominees(data.imdbID) || nominees.length == 5}
+                      disabled={movieInNominees(data.imdbID) || nominees.length === 5}
                       onClick={() => updateNominees([...nominees, data])}
                     >
                       {movieInNominees(data.imdbID) ? "Nominated" : "Nominate"}
