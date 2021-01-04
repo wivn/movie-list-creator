@@ -11,7 +11,7 @@ function SearchBar({ setText, getMovies, text }) {
           setText(event.target.value);
           getMovies(event.target.value);
         }}
-        placeholder={"Movie name goes here..."}
+        placeholder={"Search movie title here..."}
         value={text}
         type="text"
       />
